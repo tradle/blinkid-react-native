@@ -52,7 +52,7 @@ static NSString* const kOptionUseFrontCameraJsKey = @"useFrontCamera";
 static NSString* const kOptionReturnCroppedImageJsKey = @"shouldReturnCroppedImage";
 static NSString* const kOptionShouldReturnSuccessfulImageJsKey = @"shouldReturnSuccessfulImage";
 static NSString* const kOptionReturnFaceImageJsKey = @"shouldReturnFaceImage";
-static NSString* const kOptionQuality = @"quality";
+static NSString* const kOptionTimeout = @"timeout";
 static NSString* const kRecognizersArrayJsKey = @"recognizers";
 
 // js keys for recognizer types
@@ -227,8 +227,13 @@ RCT_REMAP_METHOD(scan, scan:(NSString *)key withOptions:(NSDictionary*)scanOptio
     self.scannedImageSuccesful = nil;
     self.scannedImageFace = nil;
     
-    // Do not timeout
-    settings.scanSettings.partialRecognitionTimeout = 0.0f;
+    NSTimeInterval timeout = [[self.options valueForKey:kOptionTimeout] doubleValue];
+    if (timeout) {
+        settings.scanSettings.partialRecognitionTimeout = timeout;
+    } else {
+        // Do not timeout
+        settings.scanSettings.partialRecognitionTimeout = 0.0f;
+    }
 
     /** 2. Setup the license key */
 
