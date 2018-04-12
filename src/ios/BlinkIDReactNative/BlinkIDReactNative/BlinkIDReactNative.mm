@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "BlinkIDReactNative.h"
+#import "BlinkIDReactNativeOverlayViewController.h"
 #import <React/RCTConvert.h>
 #import <MicroBlink/MicroBlink.h>
 
@@ -52,6 +53,7 @@ static NSString* const kOptionUseFrontCameraJsKey = @"useFrontCamera";
 static NSString* const kOptionReturnCroppedImageJsKey = @"shouldReturnCroppedImage";
 static NSString* const kOptionShouldReturnSuccessfulImageJsKey = @"shouldReturnSuccessfulImage";
 static NSString* const kOptionReturnFaceImageJsKey = @"shouldReturnFaceImage";
+static NSString* const kOptionTooltip = @"tooltip";
 static NSString* const kRecognizersArrayJsKey = @"recognizers";
 
 // js keys for recognizer types
@@ -165,8 +167,16 @@ RCT_REMAP_METHOD(scan, scan:(NSString *)key withOptions:(NSDictionary*)scanOptio
     }
     
     /** Allocate and present the scanning view controller */
-    UIViewController<PPScanningViewController>* scanningViewController = [PPViewControllerFactory cameraViewControllerWithDelegate:self coordinator:coordinator error:nil];
-    
+    NSString *tooltip = [scanOptions valueForKey:kOptionTooltip];
+    UIViewController<PPScanningViewController>* scanningViewController;
+    if (tooltip) {
+        BlinkIDReactNativeOverlayViewController* overlayController = [[BlinkIDReactNativeOverlayViewController alloc] init];
+        overlayController.customTooltipLabel = tooltip;
+        scanningViewController = [PPViewControllerFactory cameraViewControllerWithDelegate:self overlayViewController:overlayController coordinator:coordinator error:nil];
+    } else {
+        scanningViewController = [PPViewControllerFactory cameraViewControllerWithDelegate:self coordinator:coordinator error:nil];
+    }
+
     // allow rotation if VC is displayed as a modal view controller
     scanningViewController.autorotate = YES;
     scanningViewController.supportedOrientations = UIInterfaceOrientationMaskAll;
