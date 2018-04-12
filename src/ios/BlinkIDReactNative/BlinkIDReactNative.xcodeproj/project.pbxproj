@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		731F856E207FE821000B20EA /* BlinkIDReactNativeOverlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 731F856D207FE821000B20EA /* BlinkIDReactNativeOverlayViewController.m */; };
 		A27CCA301E9E57A500BED675 /* BlinkIDReactNative.mm in Sources */ = {isa = PBXBuildFile; fileRef = A27CCA2F1E9E57A500BED675 /* BlinkIDReactNative.mm */; };
 		A27CCA311E9E57A500BED675 /* BlinkIDReactNative.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = A27CCA2E1E9E57A500BED675 /* BlinkIDReactNative.h */; };
 		A27CCA401E9E5D8D00BED675 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A27CCA3A1E9E57CF00BED675 /* Accelerate.framework */; };
@@ -29,9 +30,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		731F856C207FE821000B20EA /* BlinkIDReactNativeOverlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlinkIDReactNativeOverlayViewController.h; sourceTree = "<group>"; };
+		731F856D207FE821000B20EA /* BlinkIDReactNativeOverlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlinkIDReactNativeOverlayViewController.m; sourceTree = "<group>"; };
 		A27CCA2B1E9E57A500BED675 /* libBlinkIDReactNative.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libBlinkIDReactNative.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A27CCA2E1E9E57A500BED675 /* BlinkIDReactNative.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BlinkIDReactNative.h; sourceTree = "<group>"; };
-		A27CCA2F1E9E57A500BED675 /* BlinkIDReactNative.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = BlinkIDReactNative.mm; sourceTree = "<group>"; };
+		A27CCA2F1E9E57A500BED675 /* BlinkIDReactNative.mm */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = BlinkIDReactNative.mm; sourceTree = "<group>"; };
 		A27CCA381E9E57C900BED675 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		A27CCA3A1E9E57CF00BED675 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		A27CCA3C1E9E57D600BED675 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -74,6 +77,8 @@
 		A27CCA2D1E9E57A500BED675 /* BlinkIDReactNative */ = {
 			isa = PBXGroup;
 			children = (
+				731F856C207FE821000B20EA /* BlinkIDReactNativeOverlayViewController.h */,
+				731F856D207FE821000B20EA /* BlinkIDReactNativeOverlayViewController.m */,
 				A27CCA2E1E9E57A500BED675 /* BlinkIDReactNative.h */,
 				A27CCA2F1E9E57A500BED675 /* BlinkIDReactNative.mm */,
 			);
@@ -150,6 +155,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				731F856E207FE821000B20EA /* BlinkIDReactNativeOverlayViewController.m in Sources */,
 				A27CCA301E9E57A500BED675 /* BlinkIDReactNative.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
