@@ -36,6 +36,10 @@ typedef NS_ENUM(NSUInteger, PPImageType) {
 
 @property (nonatomic) PPImageMetadata *scannedImageSuccesful;
 
+@property (nonatomic) NSData *scannedImageFaceData;
+
+@property (nonatomic) NSData *scannedImageSignatureData;
+
 @property (nonatomic, strong) NSArray *recognizers;
 
 @property (nonatomic) BOOL shouldReturnDocumentImage;
@@ -43,6 +47,8 @@ typedef NS_ENUM(NSUInteger, PPImageType) {
 @property (nonatomic) BOOL shouldReturnSuccessfulImage;
 
 @property (nonatomic) BOOL shouldReturnFaceImage;
+
+@property (nonatomic) BOOL shouldReturnSignatureImage;
 
 @end
 
@@ -66,6 +72,7 @@ static NSString* const kRecognizersArrayJsKey = @"recognizers";
 static NSString* const kRecognizerUSDLJsKey = @"RECOGNIZER_USDL";
 static NSString* const kRecognizerMRTDJsKey = @"RECOGNIZER_MRTD";
 static NSString* const kRecognizerEUDLJsKey = @"RECOGNIZER_EUDL";
+static NSString* const kRecognizerNZDLJsKey = @"RECOGNIZER_NZDL";
 static NSString* const kRecognizerMyKadJsKey = @"RECOGNIZER_MYKAD";
 static NSString* const kRecognizerNZDLFrontJsKey = @"RECOGNIZER_NZDL_FRONT";
 static NSString* const kRecognizerDocumentFaceJsKey = @"RECOGNIZER_DOCUMENT_FACE";
@@ -84,6 +91,7 @@ static NSString* const kFields = @"fields";
 static NSString* const kUSDLResultType = @"USDL result";
 static NSString* const kMRTDResultType = @"MRTD result";
 static NSString* const kEUDLResultType = @"EUDL result";
+static NSString* const kNZDLResultType = @"NZDL result";
 static NSString* const kMyKadResultType = @"MyKad result";
 static NSString* const kNZDLFrontResultType = @"NZDLFront result";
 static NSString* const kDocumentFaceResultType = @"DocumentFace result";
@@ -125,6 +133,7 @@ RCT_EXPORT_MODULE();
     [constants setObject:@"RECOGNIZER_MRTD" forKey:kRecognizerMRTDJsKey];
     [constants setObject:@"RECOGNIZER_USDL" forKey:kRecognizerUSDLJsKey];
     [constants setObject:@"RECOGNIZER_EUDL" forKey:kRecognizerEUDLJsKey];
+    [constants setObject:@"RECOGNIZER_NZDL" forKey:kRecognizerNZDLJsKey];
     [constants setObject:@"RECOGNIZER_DOCUMENT_FACE" forKey:kRecognizerDocumentFaceJsKey];
     [constants setObject:@"RECOGNIZER_MYKAD" forKey:kRecognizerMyKadJsKey];
     [constants setObject:@"RECOGNIZER_NZDL_FRONT" forKey:kRecognizerNZDLFrontJsKey];
@@ -132,6 +141,7 @@ RCT_EXPORT_MODULE();
     [constants setObject:@"USDL result" forKey:kUSDLResultType];
     [constants setObject:@"MRTD result" forKey:kMRTDResultType];
     [constants setObject:@"EUDL result" forKey:kEUDLResultType];
+    [constants setObject:@"NZDL result" forKey:kNZDLResultType];
     [constants setObject:@"MyKad result" forKey:kMyKadResultType];
     [constants setObject:@"NZDLFront result" forKey:kNZDLFrontResultType];
     [constants setObject:@"PDF417 result" forKey:kPDF417ResultType];
@@ -248,6 +258,7 @@ RCT_REMAP_METHOD(cancel, cancel) {
     self.shouldReturnDocumentImage = NO;
     self.shouldReturnSuccessfulImage = NO;
     self.shouldReturnFaceImage = NO;
+    self.shouldReturnSignatureImage = NO;
 
     if ([[self.options valueForKey:kOptionShouldReturnSuccessfulImageJsKey] boolValue]) {
         settings.metadataSettings.successfulFrame = YES;
@@ -262,6 +273,10 @@ RCT_REMAP_METHOD(cancel, cancel) {
     if ([[self.options valueForKey:kOptionReturnFaceImageJsKey] boolValue]) {
         settings.metadataSettings.dewarpedImage = YES;
         self.shouldReturnFaceImage = YES;
+    }
+
+    if ([[self.options valueForKey:kOptionReturnSignatureImageJsKey] boolValue]) {
+        self.shouldReturnSignatureImage = YES;
     }
 
     settings.cameraSettings.cameraType = self.cameraType;
