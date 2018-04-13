@@ -40,6 +40,10 @@ typedef NS_ENUM(NSUInteger, PPImageType) {
 
 @property (nonatomic) NSData *scannedImageSignatureData;
 
+@property (nonatomic) NSData *scannedImageFaceData;
+
+@property (nonatomic) NSData *scannedImageSignatureData;
+
 @property (nonatomic, strong) NSArray *recognizers;
 
 @property (nonatomic) BOOL shouldReturnDocumentImage;
@@ -66,6 +70,7 @@ static NSString* const kOptionShouldReturnSuccessfulImageJsKey = @"shouldReturnS
 static NSString* const kOptionReturnFaceImageJsKey = @"shouldReturnFaceImage";
 static NSString* const kOptionTimeout = @"timeout";
 static NSString* const kOptionTooltip = @"tooltip";
+static NSString* const kOptionReturnSignatureImageJsKey = @"shouldReturnSignatureImage";
 static NSString* const kRecognizersArrayJsKey = @"recognizers";
 
 // js keys for recognizer types
@@ -290,6 +295,9 @@ RCT_REMAP_METHOD(cancel, cancel) {
         // Do not timeout
         settings.scanSettings.partialRecognitionTimeout = 0.0f;
     }
+
+    self.scannedImageFaceData = nil;
+    self.scannedImageSignatureData = nil;
 
     /** 2. Setup the license key */
 
