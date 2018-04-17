@@ -98,6 +98,11 @@ static NSString* const kRaw = @"raw";
 static NSString* const kMRTDDateOfBirth = @"DateOfBirth";
 static NSString* const kMRTDDateOExpiry = @"DateOfExpiry";
 static NSString* const kMyKadBirthDate = @"ownerBirthDate";
+static NSString* const kNZDLFaceImage = @"NewZealandDLFront.Face.Image";
+static NSString* const kNZDLSignatureImage = @"NewZealandDLFront.Signature.Image";
+static NSString* const kNZDLDateOfBirth = @"NewZealandDLDateOfBirth.DateOfBirth";
+static NSString* const kNZDLDateOfExpiry = @"NewZealandDLExpiryDate.ExpiryDate";
+static NSString* const kNZDLDateOfIssue = @"NewZealandDLIssueDate.IssueDate";
 
 // NSError Domain
 static NSString* const MBErrorDomain = @"microblink.error";
@@ -200,7 +205,6 @@ RCT_REMAP_METHOD(scan, scan:(NSString *)key withOptions:(NSDictionary*)scanOptio
     dispatch_sync(dispatch_get_main_queue(), ^{
         [rootViewController presentViewController:scanningViewController animated:YES completion:nil];
     });
-
 }
 
 RCT_REMAP_METHOD(cancel, cancel) {
@@ -437,19 +441,30 @@ RCT_REMAP_METHOD(cancel, cancel) {
 
 - (void)setDictionary:(NSMutableDictionary *)dict withNzdlRecognizerResult:(PPNewZealandDLFrontRecognizerResult *)nzdlResult {
     if (self.shouldReturnFaceImage) {
-        self.scannedImageFaceData = [nzdlResult getDataElement:@"NewZealandDLFront.Face.Image"];
+        self.scannedImageFaceData = [nzdlResult getDataElement:kNZDLFaceImage];
     }
 
     if (self.shouldReturnSignatureImage) {
-        self.scannedImageSignatureData = [nzdlResult getDataElement:@"NewZealandDLFront.Signature.Image"];
+        self.scannedImageSignatureData = [nzdlResult getDataElement:kNZDLSignatureImage];
     }
 
-    PPDateResult *dateResult = [nzdlResult getDateResultElement:@"NewZealandDLDateOfBirth.DateOfBirth"];
     NSMutableDictionary *tmp = [NSMutableDictionary dictionaryWithDictionary:[nzdlResult getAllStringElements]];
-    [tmp removeObjectForKey:@"NewZealandDLFront.Face.Image"];
-    [tmp removeObjectForKey:@"NewZealandDLFront.Signature.Image"];
-    if (dateResult) {
-        [tmp setValue:dateResult.originalDateString forKey:@"NewZealandDLDateOfBirth.DateOfBirth"];
+    [tmp removeObjectForKey:kNZDLFaceImage];
+    [tmp removeObjectForKey:kNZDLSignatureImage];
+    PPDateResult *dateOfBirth = [nzdlResult getDateResultElement:kNZDLDateOfBirth];
+    PPDateResult *dateOfExpiry = [nzdlResult getDateResultElement:kNZDLDateOfExpiry];
+    PPDateResult *dateOfIssue = [nzdlResult getDateResultElement:kNZDLDateOfIssue];
+
+    if (dateOfBirth) {
+        [tmp setValue:dateOfBirth.originalDateString forKey:kNZDLDateOfBirth];
+    }
+
+    if (dateOfExpiry) {
+        [tmp setValue:dateOfExpiry.originalDateString forKey:kNZDLDateOfExpiry];
+    }
+
+    if (dateOfIssue) {
+        [tmp setValue:dateOfIssue.originalDateString forKey:kNZDLDateOfIssue];
     }
 
     [dict setObject:[NSDictionary dictionaryWithDictionary:tmp] forKey:kFields];

@@ -16,6 +16,16 @@ export const LastName = "NewZealandDLSurname.Surname";
 export const DateOfBirth = "NewZealandDLDateOfBirth.DateOfBirth";
 
 /*
+ * Date of expiry of the Driver Licence.
+ */
+export const DateOfExpiry = "NewZealandDLExpiryDate.ExpiryDate";
+
+/*
+ * Date of issue of the Driver Licence.
+ */
+export const DateOfIssue = "NewZealandDLIssueDate.IssueDate";
+
+/*
  * License number (new)
  */
 export const LicenseNumberNew = "NewZealandDLLicenseNumberNew.LicenseNumber"
@@ -46,16 +56,6 @@ export const CardVersionOld = "NewZealandDLCardVersionOld.CardVersion"
 export const CardVersion = CardVersionNew
 
 export const DonorIndicator = "NewZealandDLDonorIndicator.DonorIndicator"
-
-/*
- * Expiry date of the Driver Licence.
- */
-export const ExpiryDate = "";
-
-/*
- * Issue date of the Driver Licence
- */
-export const IssueDate = "";
 
 /*
  * Driver Address
