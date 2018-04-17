@@ -1,14 +1,19 @@
-/***** Keys for obtaining data on UK driver's licenses *****/
+/***** Keys for obtaining data on NZ driver licenses *****/
 
 /*
- * First name of the Driver's Licence owner.
+ * First name of the Driver Licence owner.
  */
 export const FirstName = "NewZealandDLFirstNames.FirstName";
 
 /*
- * First name of the Driver's Licence owner.
+ * First name of the Driver Licence owner.
  */
 export const LastName = "NewZealandDLSurname.Surname";
+
+/*
+ * Date of birth of the Driver Licence owner.
+ */
+export const DateOfBirth = "NewZealandDLDateOfBirth.DateOfBirth";
 
 /*
  * License number (new)
@@ -43,12 +48,12 @@ export const CardVersion = CardVersionNew
 export const DonorIndicator = "NewZealandDLDonorIndicator.DonorIndicator"
 
 /*
- * Expiry date of the Driver's Licence.
+ * Expiry date of the Driver Licence.
  */
 export const ExpiryDate = "";
 
 /*
- * Issue date of the Driver's Licence
+ * Issue date of the Driver Licence
  */
 export const IssueDate = "";
 

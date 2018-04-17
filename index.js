@@ -31,10 +31,3 @@ export const EUDLKeys = require('./keys/eudl_keys')
 export const NZDLKeys = require('./keys/nzdl_keys')
 export const MYKADKeys = require('./keys/mykad_keys')
 export const PDF417Keys = require('./keys/pdf417_keys')
-<<<<<<< HEAD
-<<<<<<< HEAD
-export const NZDLFrontKeys = require('./keys/nzdl_front_keys')
-=======
->>>>>>> feat: nzdl support
-=======
->>>>>>> feat: nzdl support
