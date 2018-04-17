@@ -444,9 +444,14 @@ RCT_REMAP_METHOD(cancel, cancel) {
         self.scannedImageSignatureData = [nzdlResult getDataElement:@"NewZealandDLFront.Signature.Image"];
     }
 
+    PPDateResult *dateResult = [nzdlResult getDateResultElement:@"NewZealandDLDateOfBirth.DateOfBirth"];
     NSMutableDictionary *tmp = [NSMutableDictionary dictionaryWithDictionary:[nzdlResult getAllStringElements]];
     [tmp removeObjectForKey:@"NewZealandDLFront.Face.Image"];
     [tmp removeObjectForKey:@"NewZealandDLFront.Signature.Image"];
+    if (dateResult) {
+        [tmp setValue:dateResult.originalDateString forKey:@"NewZealandDLDateOfBirth.DateOfBirth"];
+    }
+
     [dict setObject:[NSDictionary dictionaryWithDictionary:tmp] forKey:kFields];
     [dict setObject:kNZDLResultType forKey:kResultType];
 }
