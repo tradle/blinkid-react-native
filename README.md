@@ -133,7 +133,6 @@ To use the module you call it in your index.android.js or index.ios.js file like
  * shouldReturnDocumentImage : if true, cropped document images in the recognition process will be returned
  * shouldReturnFaceImage : if true, cropped face images in the recognition process will be returned
  * shouldReturnSuccessfulImage : if true, image on which scan gave valid scanning result will be returned
- * shouldReturnSignatureImage : (NZDL only) if true, image of NZDL signature area will be return
  * recognizers : array which contains recognizers that will be activated
  */
 
