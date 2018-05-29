@@ -612,7 +612,7 @@ RCT_REMAP_METHOD(cancel, cancel) {
 - (NSDictionary*)exportImage:(UIImage*)image {
     NSData *imageData = UIImageJPEGRepresentation(image, 0.9f);
     NSMutableDictionary* imageInfo = [NSMutableDictionary dictionary];
-    NSString *encodedImage = [imageData base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
+    NSString *encodedImage = [imageData base64EncodedStringWithOptions:0];
     [imageInfo setObject:@(image.size.width) forKey:kWidth];
     [imageInfo setObject:@(image.size.height) forKey:kHeight];
     [imageInfo setObject:encodedImage forKey:kBase64];
