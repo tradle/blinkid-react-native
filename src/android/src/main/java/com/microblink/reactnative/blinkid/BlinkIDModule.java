@@ -648,7 +648,7 @@ public class BlinkIDModule extends ReactContextBaseJavaModule {
                 ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
                 boolean success = imageBmp.compress(Bitmap.CompressFormat.JPEG, COMPRESSED_IMAGE_QUALITY, byteArrayOutputStream);
                 if (success) {
-                    return Base64.encodeToString(byteArrayOutputStream.toByteArray(), Base64.DEFAULT);
+                    return Base64.encodeToString(byteArrayOutputStream.toByteArray(), Base64.NO_WRAP);
                 }
                 byteArrayOutputStream.close();
             }
