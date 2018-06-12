@@ -39,6 +39,8 @@
 
 @property (nonatomic) BOOL shouldReturnFaceImage;
 
+@property (nonatomic) UIViewController<PPScanningViewController>* scanningViewController;
+
 @end
 
 // promise reject message codes
@@ -171,7 +173,8 @@ RCT_REMAP_METHOD(scan, scan:(NSString *)key withOptions:(NSDictionary*)scanOptio
     // allow rotation if VC is displayed as a modal view controller
     scanningViewController.autorotate = YES;
     scanningViewController.supportedOrientations = UIInterfaceOrientationMaskAll;
-    
+    self.scanningViewController = scanningViewController;
+
     UIViewController *rootViewController = [[[UIApplication sharedApplication] keyWindow] rootViewController];
     dispatch_sync(dispatch_get_main_queue(), ^{
         [rootViewController presentViewController:scanningViewController animated:YES completion:nil];
@@ -186,6 +189,7 @@ RCT_REMAP_METHOD(cancel, cancel) {
                                          code:-57
                                      userInfo:nil];
     self.promiseReject(kStatusScanCanceledProgrammatically, @"Scanning has been canceled programmatically", error);
+    [self.scanningViewController pauseScanning];
     [self dismissScanningView];
 }
 
@@ -508,6 +512,7 @@ RCT_REMAP_METHOD(cancel, cancel) {
     self.promiseResolve = nil;
     self.promiseReject = nil;
     self.options = nil;
+    self.scanningViewController = nil;
 }
 
 
