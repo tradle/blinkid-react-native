@@ -28,5 +28,13 @@ public abstract class OverlaySerializationUtils {
         if (uiSettings instanceof BaseScanUISettings) {
             ((BaseScanUISettings) uiSettings).setSplashScreenLayoutResourceID(R.layout.mb_layout_camera_splash);
         }
+
+        // if (uiSettings instanceof DocumentUISettings) {
+        //     DocumentUISettings docUISettings = (DocumentUISettings) uiSettings;
+        //     if (jsonOverlaySettings.hasKey("tooltipText")) {
+        //         int rid = jsonOverlaySettings.getInt("tooltipText");
+        //         docVerSettings.setTooltipTextResourceID(rid);
+        //     }
+        // }
     }
 }
