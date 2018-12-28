@@ -20,36 +20,48 @@ export class DocumentVerificationOverlaySettings extends OverlaySettings {
     constructor(opts={}) {
         super('DocumentVerificationOverlaySettings');
         /**
-         * String: splash message that is shown before scanning the first side of the document, while starting camera.
-         * If null, default value will be used.
-         */
-        this.firstSideSplashMessage = null;
-        /**
-         * String: splash message that is shown before scanning the second side of the document, while starting camera.
-         * If null, default value will be used.
-         */
-        this.secondSideSplashMessage = null;
-        /**
-        * String: splash message that is shown after scanning the document.
-        * If null, default value will be used.
-        */
-        this.scanningDoneSplashMessage = null;
-        /**
-         * String: user instructions that are shown above camera preview while the first side of the
+         * Returns/sets user instructions that are shown above camera preview while the first side of the
          * document is being scanned.
-         * If null, default value will be used.
+         *
+         * Default: string defined by "photopay_front_verification_document"
+         * key in strings file in Microblink.bundle
          */
-        this.firstSideInstructions = null;
+        this.firstSideInstructions = opts.firstSideInstructions;
+
         /**
-         * String: user instructions that are shown above camera preview while the second side of the
+         * Returns/sets user instructions that are shown above camera preview while the second side of the
          * document is being scanned.
-         * If null, default value will be used.
+         *
+         * Default: string defined by "photopay_back_verification_document"
+         * key in strings file in Microblink.bundle
          */
-        this.secondSideInstructions = null;
+        this.secondSideInstructions = opts.secondSideInstructions;
+
         /**
-         * String: glare message that is shown if glare was detected while scanning document.
-         * If null, default value will be used.
+         * Returns/sets splash message that is shown before scanning the first side of the document,
+         * while starting camera.
+         *
+         * Default: string defined by "photopay_front_splash_verification_document"
+         * key in strings file in Microblink.bundle
          */
-        this.glareMessage = null;
+        this.firstSideSplashMessage = opts.firstSideSplashMessage;
+
+        /**
+         * Returns/sets splash message that is shown before scanning the second side of the document,
+         * while starting camera.
+         *
+         * Default: string defined by "photopay_back_splash_verification_document"
+         * key in strings file in Microblink.bundle
+         */
+        this.secondSideSplashMessage = opts.secondSideSplashMessage;
+
+        /**
+         * Returns/sets glare status message that is shown if glare detection is turned on
+         * and it is shown if glare is detected.
+         *
+         * Default: string defined by "photopay_glare_status"
+         * key in strings file in Microblink.bundle
+         */
+        this.glareStatusMessage = opts.glareStatusMessage;
     }
 }
